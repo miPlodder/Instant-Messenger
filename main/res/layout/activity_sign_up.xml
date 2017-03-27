@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.saksham.instantmessenger.signUp">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"
+        android:id="@+id/userName"
+        android:hint="UserName"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/userName"
+        android:layout_alignRight="@+id/userName"
+        android:layout_alignEnd="@+id/userName"
+        android:layout_marginTop="15dp"
+        android:id="@+id/password"
+        android:hint="Password"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:text="Sign Up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signUp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="36dp"
+        android:onClick="doSomething"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/phoneNumber"
+        android:hint="Phone Number"
+        android:layout_below="@+id/email"
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email"
+        android:layout_marginTop="19dp"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/email"
+        android:hint="Email"
+        android:layout_below="@+id/password"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignStart="@+id/password"
+        android:layout_marginTop="18dp"
+        android:textColor="@android:color/black" />
+</RelativeLayout>
