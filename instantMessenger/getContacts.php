@@ -2,13 +2,24 @@
 
 	require 'connectionEst.php';
 
-	getContacts();
+	if(isset($_POST["userId"]))
+		
+		getContacts();
+	
+	else{
+
+		getContacts();
+
+	}
+
 
 	function getContacts(){
 
+		//$userId = "66";//$_POST["userId"];
+		
 		global $conn;
 
-		$sql = "select username,phoneNumber from userDetail ";
+		$sql = "select username,phoneNumber from userDetail";// WHERE id <>'$userId'";
 
 		$result = $conn->query($sql);
 

@@ -43,7 +43,12 @@ function insertData(){
 		$sql = "INSERT INTO userDetail(userName,password,email,phoneNumber) values ('$userName','$password','$email','$phoneNumber')";
 		
 		if($conn->query($sql) == true ){
-			echo "Account Created";
+			
+			if($conn->query($sql) == true ){
+
+				echo "Account Created";
+
+			}
 		}
 		else{
 			echo "Problem Creating Account";
