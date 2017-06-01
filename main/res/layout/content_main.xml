@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.saksham.instantmessenger.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:id="@+id/display"
+        android:text="Flash"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColorLink="@android:color/background_light"
+        android:scrollHorizontally="false"
+        android:textSize="34sp"
+        android:textColor="@android:color/background_dark"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:fontFamily="casual"/>
+
+    <Button
+        android:text="SIGN UP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="90dp"
+        android:id="@+id/signUp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="doSomething"  />
+
+    <Button
+        android:text="SIGN IN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="41dp"
+        android:id="@+id/signIn"
+        android:onClick="doSomething"/>
+
+    <TextView
+        android:text="Terms And Conditions   "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tandc"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="doSomething" />
+
+    <TextView
+        android:text="Forgot Password "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/forgotPassword"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:onClick="doSomething" />
+
+    <ImageView
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/imageView7"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="150dp" />
+
+
+</RelativeLayout>
