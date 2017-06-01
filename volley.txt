@@ -1,0 +1,148 @@
+//---------------------------------------------------------------------------
+//1)jsonobject request using VOLLEY GOOGLE
+
+
+JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,url,null,
+
+						
+						new Response.Listener<JSONObject>(){	
+							
+							public void onResponse(JSONObject response)
+						
+							{}
+						
+							},
+						
+						new Response.ErrorListener(){
+
+							public void onErrorResponse(VolleyError error){}
+							}
+
+				);	
+
+
+//---------------------------------------------------------------------------
+//2)singelton class 
+package com.example.saksham.myapplication;
+
+import android.app.DownloadManager;
+import android.content.Context;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
+/**
+ * Created by saksham on 18/3/17.
+ */
+
+public class mySingleton {
+
+    private static mySingleton mInstance;
+    private RequestQueue requestQueue;
+    private static Context mCtx;
+
+    private mySingleton(Context context) {
+        mCtx = context;
+        getRequestQueue();
+
+    }
+
+
+    public RequestQueue getRequestQueue() {
+
+        if (requestQueue == null) {
+
+            requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+        }
+        return requestQueue;
+
+    }
+
+    public static synchronized mySingleton getInstance(Context context) {
+
+        if (mInstance == null) {
+
+            mInstance = new mySingleton(context);
+
+        }
+
+        return mInstance;
+
+
+    }
+
+    public<T> void addToRequestQueue(Request<T> request)
+    {
+
+        requestQueue.add(request);
+
+
+
+    }
+
+
+}
+
+
+//--------------------------------------------------------------------------------
+//3)Making string request and sending data to the server using JSON 
+
+
+        StringRequest jsonObjectRequest = new StringRequest(Request.Method.POST,strURL,new Response.Listener<String>(){
+
+
+            @Override
+            public void onResponse(String response) {
+
+
+
+                    /*StringBuilder userName = new StringBuilder();
+                    StringBuilder id = new StringBuilder();
+
+                    JSONArray arr = response.getJSONArray("details");
+                    int index = 0 ;
+
+                    while(index < arr.length()){
+
+                        id.append(arr.getJSONObject(index).getString("id"));
+                        userName.append(arr.getJSONObject(index).getString("username"));
+                        index++;
+                    }
+                    */
+                    Toast.makeText(MainActivity.this,response,Toast.LENGTH_SHORT).show();
+
+
+
+
+
+            }
+        },new Response.ErrorListener(){
+
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.e("inside","inside >>"+error.getMessage());
+
+            }
+        }) {
+
+
+        	//adding method to JsonObjectRequest
+        	//which helps to send data from activity to server
+        	
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+
+                Map<String,String> params = new HashMap<>();
+                params.put("userName",userNameS);
+                params.put("password",passwordS);
+
+                return params;
+
+            }
+
+        };
+
+//------------------------------------------------------------------------------

@@ -1,0 +1,128 @@
+package com.example.saksham.serverconnectivity;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.renderscript.ScriptGroup;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+
+/**
+ * Created by saksham on 12/3/17.
+ */
+
+public class backgroundTask extends AsyncTask<String, Void, String> {
+
+    Context c;
+    AlertDialog alert;
+
+    protected backgroundTask(Context c) {
+        this.c = c;
+    }
+
+    @Override
+    protected String doInBackground(String... params) {
+
+        String type = params[0];
+        //Toast.makeText(MainActivity.this,type,Toast.LENGTH_SHORT).show();
+
+        String name = params[1];
+        String password = params[2];
+
+        String loginURL = "http://192.168.43.88/login.php";
+
+        if (type.trim().equals(type.trim())) {
+            Log.e(type, "inside if condition");
+            try {
+                Log.e(type, "inside try");
+                URL url = new URL(loginURL);
+                Log.e(type, "inside openconnection1");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                Log.e(type, "inside openconnection2");
+                conn.setRequestMethod("POST");
+                Log.e(type, "inside openconnection3");
+                conn.setDoOutput(true);
+                Log.e(type, "inside openconnection4");
+                conn.setDoInput(true);
+                Log.e(type, "inside openconnection5");
+
+                OutputStream outputStream = conn.getOutputStream();
+                Log.e(type, "inside openconnection6");
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                Log.e(type, "inside "+name+password);
+                String postData = URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(name, "UTF-8") + "&"
+                        + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+                Log.e(type, "inside"+postData);
+
+                bufferedWriter.write(postData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                outputStream.close();
+
+                //defining inputStream to get the response from the server
+                Log.e(type, "inside output stream1");
+                InputStream inputStream = conn.getInputStream();
+                Log.e(type, "inside output stream2");
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
+                Log.e(type, "inside output stream");
+                Log.e(type, "inside before while");
+                String result = "";
+                String line ="";//to read line by line
+                Log.e(type, "inside while");
+                while ((line = bufferedReader.readLine()) != null) {
+
+                    result += line;
+
+
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                conn.disconnect();
+
+                return result;
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                Log.e(type, "inside catch block1");
+            } catch (IOException e) {
+                Log.e(e.getMessage(),"inside"+e.getMessage());
+                e.printStackTrace();
+                Log.e(type, "inside catch block2");
+            }
+
+        }
+        Log.e(type, "inside catch block3");
+        return null;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        alert = new AlertDialog.Builder(c).create();
+        alert.setTitle("Login Status");
+
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        alert.setMessage(result);
+        alert.show();
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
+    }
+}
